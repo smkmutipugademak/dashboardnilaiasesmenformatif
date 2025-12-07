@@ -19,8 +19,7 @@ async function loadData() {
     const loading = document.getElementById('loading');
     const empty = document.getElementById('empty');
     const tableBody = document.getElementById('tableBody');
-
-    // Reset UI
+   // 1. BERSIHKAN TABEL DULU
     tableBody.innerHTML = '';
     loading.style.display = 'block';
     empty.style.display = 'none';
@@ -56,7 +55,9 @@ async function loadData() {
 
     } catch (error) {
         console.error("Error:", error);
-        loading.innerHTML = "Gagal koneksi ke server. Coba refresh.";
+        // Tampilkan pesan error jika gagal, matikan spinner
+        loading.style.display = 'none'; 
+        tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; color:red; padding: 20px;">Gagal memuat data. Periksa koneksi internet.</td></tr>`;
     }
 }
 
